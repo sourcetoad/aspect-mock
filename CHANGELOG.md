@@ -1,6 +1,6 @@
 # Changelog
 
-#### 4.0.0
+#### 5.0.0
 
 * Changed php version to ^8.0
 * Switched goaop/framework to lanfix/goaop-framework
