@@ -3,12 +3,12 @@ namespace AspectMock;
 
 use AspectMock\Core\Registry;
 use AspectMock\Intercept\BeforeMockTransformer;
-use Lanfix\Core\AspectContainer;
-use Lanfix\Core\AspectKernel;
-use Lanfix\Instrument\ClassLoading\SourceTransformingLoader;
-use Lanfix\Instrument\Transformer\CachingTransformer;
-use Lanfix\Instrument\Transformer\FilterInjectorTransformer;
-use Lanfix\Instrument\Transformer\MagicConstantTransformer;
+use Go\Core\AspectContainer;
+use Go\Core\AspectKernel;
+use Go\Instrument\ClassLoading\SourceTransformingLoader;
+use Go\Instrument\Transformer\CachingTransformer;
+use Go\Instrument\Transformer\FilterInjectorTransformer;
+use Go\Instrument\Transformer\MagicConstantTransformer;
 use Symfony\Component\Finder\Finder;
 
 require_once __DIR__ . '/Core/Registry.php';

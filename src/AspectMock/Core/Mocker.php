@@ -3,7 +3,7 @@
 namespace AspectMock\Core;
 
 use AspectMock\Intercept\FunctionInjector;
-use Lanfix\Aop\Aspect;
+use Go\Aop\Aspect;
 use AspectMock\Intercept\MethodInvocation;
 
 class Mocker implements Aspect
