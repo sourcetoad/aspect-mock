@@ -124,7 +124,7 @@ class ClassProxy extends Verifier  {
 
     private function getRealClass()
     {
-        if (in_array('Go\Aop\Proxy', $this->reflected->getInterfaceNames())) {
+        if (in_array('Lanfix\Aop\Proxy', $this->reflected->getInterfaceNames())) {
             return $this->reflected->getParentClass();
         }
         return $this->reflected;

@@ -1,5 +1,10 @@
 # Changelog
 
+#### 4.0.0
+
+* Changed php version to ^8.0
+* Switched goaop/framework to lanfix/goaop-framework
+
 #### 3.0.0
 
 * Upgraded to Go AOP 2.2 
@@ -39,7 +44,7 @@
 
 #### 0.5.3
 
-* Updated to goaop/framework 0.6.x and codeception 2.1
+* Updated to lanfix/goaop-framework 0.6.x and codeception 2.1
 
 
 #### 0.5.1
@@ -54,12 +59,12 @@
 * Fixed mocking functions with arguments passed by reference (#34)
 * Fixed passing arguments by reference in InstanceProxy
 * Debug mode can be disabled in options with `debug => false`
-* Updated to Go\Aop 0.5.0
+* Updated to Lanfix\Aop 0.5.0
 
 
 #### 0.5.0-beta 05/14/2014
 
-* Moved to Go\Aop 0.5.x-dev
+* Moved to Lanfix\Aop 0.5.x-dev
 
 
 #### 0.4.2 05/09/2014

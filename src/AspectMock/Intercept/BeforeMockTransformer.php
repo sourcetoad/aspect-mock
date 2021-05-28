@@ -1,10 +1,10 @@
 <?php
 namespace AspectMock\Intercept;
-use Go\Aop\Aspect;
-use Go\Instrument\Transformer\StreamMetaData;
-use Go\Instrument\Transformer\WeavingTransformer;
-use Go\ParserReflection\ReflectionFile;
-use Go\ParserReflection\ReflectionMethod;
+use Lanfix\Aop\Aspect;
+use Lanfix\Instrument\Transformer\StreamMetaData;
+use Lanfix\Instrument\Transformer\WeavingTransformer;
+use Lanfix\ParserReflection\ReflectionFile;
+use Lanfix\ParserReflection\ReflectionMethod;
 
 class BeforeMockTransformer extends WeavingTransformer
 {
