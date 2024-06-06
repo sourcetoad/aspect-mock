@@ -14,7 +14,7 @@
        },
     "require": {
         "php": "^8.0",
-        "lanfix/goaop-framework": "4.0.4",
+        "sourcetoad/goaop-framework": "4.0.4",
         "phpunit/phpunit": "^9.5",
         "symfony/finder": ">=4.4"
     },
