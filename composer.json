@@ -14,14 +14,20 @@
        },
     "require": {
         "php": "^8.0",
-        "lanfix/goaop-framework": "^4.0",
+        "lanfix/goaop-framework": "dev-master#4.0.4",
         "phpunit/phpunit": "^9.5",
-        "symfony/finder": ">=4.4 <6.0"
+        "symfony/finder": ">=4.4"
     },
     "require-dev": {
         "codeception/codeception": "^4.1",
         "codeception/verify": "^2.1",
         "codeception/specify": "^1.4"
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/sourcetoad/goaop-framework"
+        }
+    ],
     "license": "MIT"
 }
