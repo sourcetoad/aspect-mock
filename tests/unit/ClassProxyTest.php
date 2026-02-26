@@ -2,11 +2,7 @@
 namespace demo;
 use AspectMock\Proxy\ClassProxy;
 use AspectMock\Test as test;
-use Codeception\Specify;
-
-class ClassProxyTest extends \Codeception\TestCase\Test {
-
-    use Specify;
+class ClassProxyTest extends \Codeception\PHPUnit\TestCase {
 
     public function testSimpleClassValidations()
     {
@@ -28,7 +24,7 @@ class ClassProxyTest extends \Codeception\TestCase\Test {
         /** @var $class ClassProxy **/
         verify($class->isDefined())->true();
         verify($class->hasMethod('setName'))->false();
-        verify($class->traits())->arrayContains('Codeception\Specify');
+        verify($class->traits())->empty();
         verify($class->interfaces())->arrayContains('Iterator');
         verify($class->parent())->equals('stdClass');
     }
@@ -43,16 +39,12 @@ class ClassProxyTest extends \Codeception\TestCase\Test {
     {
         $this->class = test::double('demo\UserModel');
 
-        $this->specify('instance can be created from a class proxy', function() {
-            $user = $this->class->construct(['name' => 'davert']);
-            verify($user->getName())->equals('davert');
-            $this->assertInstanceOf('demo\UserModel', $user);
-        });
+        $user = $this->class->construct(['name' => 'davert']);
+        verify($user->getName())->equals('davert');
+        $this->assertInstanceOf('demo\UserModel', $user);
 
-        $this->specify('instance can be created without constructor', function() {
-            $user = $this->class->make();
-            $this->assertInstanceOf('demo\UserModel', $user);
-        });
+        $user = $this->class->make();
+        $this->assertInstanceOf('demo\UserModel', $user);
     }
 
     public function testClassWithTraits() {

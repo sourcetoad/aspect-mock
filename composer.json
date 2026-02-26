@@ -14,14 +14,13 @@
        },
     "require": {
         "php": "^8.4",
-        "lanfix/goaop-framework": "dev-master#4.0.4",
+        "lanfix/goaop-framework": "dev-update-dependencies",
         "phpunit/phpunit": "^13.0",
         "symfony/finder": ">=4.4"
     },
     "require-dev": {
-        "codeception/codeception": "^4.1",
-        "codeception/verify": "^2.1",
-        "codeception/specify": "^1.4"
+        "codeception/codeception": "^5.1",
+        "codeception/verify": "^3.4"
     },
     "repositories": [
         {

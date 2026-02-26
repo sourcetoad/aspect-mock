@@ -7,8 +7,6 @@ use Codeception\PHPUnit\TestCase;
 
 class MockTest extends TestCase
 {
-    use \Codeception\Specify;
-
     protected function _tearDown()
     {
         double::clean();
@@ -22,18 +20,14 @@ class MockTest extends TestCase
         $user = new InstanceProxy($user);
         $user->setName('davert');
 
-        $this->specify('setName() was invoked', function() use ($user) {
-            $user->verifyInvoked('setName');
-            $user->verifyInvoked('setName',['davert']);
-            $user->verifyInvokedMultipleTimes('setName',1);
-            $user->verifyInvokedMultipleTimes('setName',1,['davert']);
-            $user->verifyNeverInvoked('setName',['bugoga']);
-        });
+        $user->verifyInvoked('setName');
+        $user->verifyInvoked('setName',['davert']);
+        $user->verifyInvokedMultipleTimes('setName',1);
+        $user->verifyInvokedMultipleTimes('setName',1,['davert']);
+        $user->verifyNeverInvoked('setName',['bugoga']);
 
-        $this->specify('save() was not invoked', function() use ($user) {
-            $user->verifyNeverInvoked('save');
-            $user->verifyNeverInvoked('save',['params']);
-        });
+        $user->verifyNeverInvoked('save');
+        $user->verifyNeverInvoked('save',['params']);
 
     }
 
