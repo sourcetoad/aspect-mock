@@ -14,12 +14,11 @@ class BeforeMockTransformer extends WeavingTransformer
 
     public function transform(StreamMetaData $metadata): TransformerResultEnum
     {
-        $result        = TransformerResultEnum::RESULT_ABSTAIN;
+        $result = TransformerResultEnum::RESULT_ABSTAIN;
         $reflectedFile = new ReflectionFile($metadata->uri, $metadata->syntaxTree);
-        $namespaces    = $reflectedFile->getFileNamespaces();
+        $namespaces = $reflectedFile->getFileNamespaces();
 
         foreach ($namespaces as $namespace) {
-
             $classes = $namespace->getClasses();
             foreach ($classes as $class) {
 

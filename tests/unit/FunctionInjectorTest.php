@@ -54,13 +54,11 @@ class FunctionInjectorTest extends \Codeception\PHPUnit\TestCase
         $this->funcInjector->save();
         exec('php -l '.$this->funcInjector->getFileName(), $output, $code);
         verify($code)->equals(0);
-        // debug: $this->funcInjector->getPHP()
     }
 
     public function testLoadFunc()
     {
         $this->funcInjector->save();
-        // debug: $this->funcInjector->getFileName()
         $this->funcInjector->inject();
         verify(strlen('hello'))->equals(5);
     }
