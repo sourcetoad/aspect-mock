@@ -2,6 +2,7 @@
 namespace AspectMock\Intercept;
 use Go\Aop\Aspect;
 use Go\Instrument\Transformer\StreamMetaData;
+use Go\Instrument\Transformer\TransformerResultEnum;
 use Go\Instrument\Transformer\WeavingTransformer;
 use Go\ParserReflection\ReflectionFile;
 use Go\ParserReflection\ReflectionMethod;
@@ -11,14 +12,13 @@ class BeforeMockTransformer extends WeavingTransformer
     protected $before = " if ((\$__am_res = __amock_before(\$this, __CLASS__, __FUNCTION__, array(%s), false)) !== __AM_CONTINUE__) return \$__am_res; ";
     protected $beforeStatic = " if ((\$__am_res = __amock_before(get_called_class(), __CLASS__, __FUNCTION__, array(%s), true)) !== __AM_CONTINUE__) return \$__am_res; ";
 
-    public function transform(StreamMetaData $metadata): string
+    public function transform(StreamMetaData $metadata): TransformerResultEnum
     {
-        $result        = self::RESULT_ABSTAIN;
+        $result = TransformerResultEnum::RESULT_ABSTAIN;
         $reflectedFile = new ReflectionFile($metadata->uri, $metadata->syntaxTree);
-        $namespaces    = $reflectedFile->getFileNamespaces();
+        $namespaces = $reflectedFile->getFileNamespaces();
 
         foreach ($namespaces as $namespace) {
-
             $classes = $namespace->getClasses();
             foreach ($classes as $class) {
 
@@ -69,9 +69,9 @@ class BeforeMockTransformer extends WeavingTransformer
                     $beforeDefinition = sprintf($beforeDefinition, $params);
                     $tokenPosition    = $method->getNode()->getAttribute('startTokenPos');
                     do {
-                        if (($metadata->tokenStream[$tokenPosition][1] ?? '') === '{') {
-                            $metadata->tokenStream[$tokenPosition][1] .= $beforeDefinition;
-                            $result = self::RESULT_TRANSFORMED;
+                        if (isset($metadata->tokenStream[$tokenPosition]) && $metadata->tokenStream[$tokenPosition]->text === '{') {
+                            $metadata->tokenStream[$tokenPosition]->text .= $beforeDefinition;
+                            $result = TransformerResultEnum::RESULT_TRANSFORMED;
                             break;
                         }
                         $tokenPosition++;

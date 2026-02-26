@@ -5,7 +5,7 @@ use AspectMock\Intercept\FunctionInjector;
 use AspectMock\Test as test;
 use PHPUnit\Framework\ExpectationFailedException;
 
-class FunctionInjectorTest extends \Codeception\TestCase\Test
+class FunctionInjectorTest extends \Codeception\PHPUnit\TestCase
 {
     /**
      * @var FunctionInjector
@@ -22,7 +22,7 @@ class FunctionInjectorTest extends \Codeception\TestCase\Test
      */
     protected $funcReferencedParameterInjector;
 
-    public function _before()
+    public function _setUp()
     {
         $this->funcInjector = new FunctionInjector('demo', 'strlen');
         $this->funcOptionalParameterInjector = new FunctionInjector('demo', 'explode');
@@ -40,7 +40,7 @@ class FunctionInjectorTest extends \Codeception\TestCase\Test
     public function testReferencedParameterTemplate()
     {
         $php = $this->funcReferencedParameterInjector->getPHP();
-        verify($php)->stringContainsString("function preg_match(\$p0, \$p1, &\$p2=NULL, \$p3=NULL, \$p4=NULL)");
+        verify($php)->stringContainsString("function preg_match(string \$p0, string \$p1, &\$p2 = null, int \$p3 = 0, int \$p4 = 0)");
         verify($php)->stringContainsString("case 5: \$args = [\$p0, \$p1, &\$p2, \$p3, \$p4]; break;");
         verify($php)->stringContainsString("case 4: \$args = [\$p0, \$p1, &\$p2, \$p3]; break;");
         verify($php)->stringContainsString("case 3: \$args = [\$p0, \$p1, &\$p2]; break;");
@@ -54,13 +54,11 @@ class FunctionInjectorTest extends \Codeception\TestCase\Test
         $this->funcInjector->save();
         exec('php -l '.$this->funcInjector->getFileName(), $output, $code);
         verify($code)->equals(0);
-        codecept_debug($this->funcInjector->getPHP());
     }
 
     public function testLoadFunc()
     {
         $this->funcInjector->save();
-        codecept_debug($this->funcInjector->getFileName());
         $this->funcInjector->inject();
         verify(strlen('hello'))->equals(5);
     }

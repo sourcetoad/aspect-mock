@@ -56,7 +56,7 @@ EOF;
         } else {
             throw new \Exception('reflection api changed. adjust code.');
         }
-        if ($internal && $parameter->isOptional()) {
+        if ($internal && $parameter->isOptional() && strpos($text, '=') === false) {
             $text .= "=NULL";
         }
         return $text;

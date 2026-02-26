@@ -8,26 +8,22 @@
         }
     ],
     "autoload": {
-           "psr-0": {
-               "AspectMock": "src/"
-           }
-       },
+        "psr-0": {
+            "AspectMock": "src/"
+        }
+    },
     "require": {
-        "php": "^8.0",
-        "lanfix/goaop-framework": "dev-master#4.0.4",
-        "phpunit/phpunit": "^9.5",
+        "php": "^8.4",
+        "goaop/framework": "dev-master",
+        "phpunit/phpunit": "^10.0 || ^11.0 || ^13.0",
         "symfony/finder": ">=4.4"
     },
     "require-dev": {
-        "codeception/codeception": "^4.1",
-        "codeception/verify": "^2.1",
-        "codeception/specify": "^1.4"
+        "codeception/codeception": "^5.1",
+        "codeception/verify": "^3.4"
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/sourcetoad/goaop-framework"
-        }
-    ],
-    "license": "MIT"
+    "repositories": [],
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }

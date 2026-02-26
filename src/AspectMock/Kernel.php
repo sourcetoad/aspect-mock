@@ -3,8 +3,11 @@ namespace AspectMock;
 
 use AspectMock\Core\Registry;
 use AspectMock\Intercept\BeforeMockTransformer;
+use Go\Core\AdviceMatcher;
 use Go\Core\AspectContainer;
 use Go\Core\AspectKernel;
+use Go\Core\CachedAspectLoader;
+use Go\Instrument\ClassLoading\CachePathManager;
 use Go\Instrument\ClassLoading\SourceTransformingLoader;
 use Go\Instrument\Transformer\CachingTransformer;
 use Go\Instrument\Transformer\FilterInjectorTransformer;
@@ -60,16 +63,16 @@ class Kernel extends AspectKernel
 
     protected function registerTransformers(): array
     {
-        $cachePathManager = $this->getContainer()->get('aspect.cache.path.manager');;
+        $cachePathManager = $this->getContainer()->getService(CachePathManager::class);
 
         $sourceTransformers = [
             new FilterInjectorTransformer($this, SourceTransformingLoader::getId(), $cachePathManager),
             new MagicConstantTransformer($this),
             new BeforeMockTransformer(
                 $this,
-                $this->getContainer()->get('aspect.advice_matcher'),
+                $this->getContainer()->getService(AdviceMatcher::class),
                 $cachePathManager,
-                $this->getContainer()->get('aspect.cached.loader')
+                $this->getContainer()->getService(CachedAspectLoader::class)
             )
         ];
 

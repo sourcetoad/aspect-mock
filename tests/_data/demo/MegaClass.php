@@ -1,12 +1,10 @@
 <?php
 
 namespace demo;
-use Codeception\Specify;
 
 class MegaClass extends \stdClass implements \Iterator
 {
     public $user;
-    use Specify;
 
     public function current()
     {
