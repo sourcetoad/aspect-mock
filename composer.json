@@ -15,7 +15,7 @@
     "require": {
         "php": "^8.4",
         "lanfix/goaop-framework": "dev-update-dependencies",
-        "phpunit/phpunit": "^13.0",
+        "phpunit/phpunit": "^10.0 || ^11.0 || ^13.0",
         "symfony/finder": ">=4.4"
     },
     "require-dev": {
